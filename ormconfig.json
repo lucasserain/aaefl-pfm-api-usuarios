@@ -5,10 +5,14 @@
   "username": "postgres",
   "password": "postgres",
   "database": "DBPFM01",
+  "entities": [
+    "./src/models/*.ts"
+  ],
   "migrations": [
     "./src/database/migrations/*.ts"
   ],
   "cli":{
     "migrationsDir":"./src/database/migrations"
-  }
+  },
+  "autoSchemaSync": true
 }
