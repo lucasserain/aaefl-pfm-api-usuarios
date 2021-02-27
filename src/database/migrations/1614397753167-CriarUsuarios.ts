@@ -16,13 +16,14 @@ export default class CriarUsuarios1614397753167 implements MigrationInterface {
           {
             name: 'nome',
             type: 'varchar',
-            isNullable: false,
           },
           {
             name: 'email',
             type: 'varchar',
-            isNullable: false,
-            isUnique: true,
+          },
+          {
+            name: 'password',
+            type: 'varchar',
           },
           {
             name: 'dt_cria',
