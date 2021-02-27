@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { Router } from 'express';
 
 import CriarUsuarioService from '../services/CriarUsuarioService';
@@ -18,6 +17,8 @@ usuariosRouter.post('/', async (request, response) => {
       password,
     });
 
+    // @ts-expect-error Paliativo para remover password na resposta
+    delete usuario.password;
     return response.json(usuario);
   } catch (error) {
     return response.status(400).json({ error: error.message });
