@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
+import { sign, verify } from 'jsonwebtoken';
 import Usuario from '../models/Usuarios';
 
 interface Request {
@@ -9,6 +10,7 @@ interface Request {
 
 interface Response {
   usuario: Usuario;
+  token: string;
 }
 
 class AutenticarUsuarioService {
@@ -26,8 +28,12 @@ class AutenticarUsuarioService {
     if (!passwoardMatched) {
       throw new Error('Combinação de e-mail/senha inválida.');
     }
+    const token = sign({}, 'e6b7da2fd8edaec57627327dc22b70e1', {
+      subject: usuario.cod_usua,
+      expiresIn: '1d',
+    });
 
-    return { usuario };
+    return { usuario, token };
   }
 }
 
