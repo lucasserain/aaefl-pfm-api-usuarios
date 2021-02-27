@@ -15,10 +15,10 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "prettier",
-    "eslint-disable @typescript-eslint/camelcase"
+    "prettier"
   ],
   "rules": {
+    "camelcase": [2, { "properties": "never", "ignoreDestructuring": true }],
     "prettier/prettier": "error",
     "class-methods-use-this":"off",
     "import/extensions":[
