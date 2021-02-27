@@ -6,14 +6,15 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  Table,
 } from 'typeorm';
 
 import TipoUsuarios from './TipoUsuarios';
 
-@Entity('TBPFM01_USUARIOS')
+@Entity('TBPFM01_USUA')
 class Usuarios {
   @PrimaryGeneratedColumn('uuid')
-  codUsua: string;
+  cod_usua: string;
 
   @Column()
   nome: string;
@@ -25,17 +26,17 @@ class Usuarios {
   password: string;
 
   @Column()
-  codTipoUsua: number;
+  cod_tipo_usua: number;
 
   @OneToOne(() => TipoUsuarios)
-  @JoinColumn({ name: 'codTipoUsua' })
+  @JoinColumn({ name: 'cod_tipo_usua' })
   tipoUsuario: TipoUsuarios;
 
   @CreateDateColumn()
-  dtCria: Date;
+  dt_cria: Date;
 
   @CreateDateColumn()
-  dtAlte: Date;
+  dt_alte: Date;
 }
 
 export default Usuarios;

@@ -3,10 +3,10 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('TBPFM02_TIPO_USUA')
 class TipoUsuarios {
   @PrimaryGeneratedColumn()
-  codTipoUsua: number;
+  cod_tipo_usua: number;
 
   @Column()
-  descTipoUsua: string;
+  desc_tipo_usua: string;
 }
 
 export default TipoUsuarios;
