@@ -15,7 +15,8 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "prettier"
+    "prettier",
+    "eslint-disable @typescript-eslint/camelcase"
   ],
   "rules": {
     "prettier/prettier": "error",
