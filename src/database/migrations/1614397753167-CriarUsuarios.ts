@@ -1,10 +1,15 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export default class CriarUsuarios1614397753167 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'TBPFM01_USUARIOS',
+        name: 'TBPFM01_USUA',
         columns: [
           {
             name: 'cod_usua',
@@ -24,6 +29,10 @@ export default class CriarUsuarios1614397753167 implements MigrationInterface {
           {
             name: 'password',
             type: 'varchar',
+          },
+          {
+            name: 'cod_tipo_usua',
+            type: 'integer',
           },
           {
             name: 'dt_cria',

@@ -20,6 +20,9 @@ class Usuarios {
   @Column()
   password: string;
 
+  @Column()
+  codTipoUsua: number;
+
   @CreateDateColumn()
   dtCria: Date;
 
