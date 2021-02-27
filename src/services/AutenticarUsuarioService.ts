@@ -1,7 +1,9 @@
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
-import { sign, verify } from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 import Usuario from '../models/Usuarios';
+import authConfig from '../config/auth';
+import auth from '../config/auth';
 
 interface Request {
   email: string;
@@ -28,9 +30,10 @@ class AutenticarUsuarioService {
     if (!passwoardMatched) {
       throw new Error('Combinação de e-mail/senha inválida.');
     }
-    const token = sign({}, 'e6b7da2fd8edaec57627327dc22b70e1', {
+    const { secret, expiresIn } = authConfig.jwt;
+    const token = sign({}, secret, {
       subject: usuario.cod_usua,
-      expiresIn: '1d',
+      expiresIn,
     });
 
     return { usuario, token };
