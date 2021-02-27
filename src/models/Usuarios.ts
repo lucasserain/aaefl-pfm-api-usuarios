@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import TipoUsuarios from './TipoUsuarios';
 
 @Entity('TBPFM01_USUARIOS')
 class Usuarios {
@@ -22,6 +26,10 @@ class Usuarios {
 
   @Column()
   codTipoUsua: number;
+
+  @OneToOne(() => TipoUsuarios)
+  @JoinColumn({ name: 'codTipoUsua' })
+  tipoUsuario: TipoUsuarios;
 
   @CreateDateColumn()
   dtCria: Date;
