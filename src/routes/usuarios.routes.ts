@@ -10,24 +10,20 @@ const usuariosRouter = Router();
 const upload = multer(uploadConfig);
 
 usuariosRouter.post('/', async (request, response) => {
-  try {
-    const { nome, email, cod_tipo_usua, password } = request.body;
+  const { nome, email, cod_tipo_usua, password } = request.body;
 
-    const criarUsuario = new CriarUsuarioService();
+  const criarUsuario = new CriarUsuarioService();
 
-    const usuario = await criarUsuario.execute({
-      nome,
-      email,
-      cod_tipo_usua,
-      password,
-    });
+  const usuario = await criarUsuario.execute({
+    nome,
+    email,
+    cod_tipo_usua,
+    password,
+  });
 
-    // @ts-expect-error Paliativo para remover password na resposta
-    delete usuario.password;
-    return response.json(usuario);
-  } catch (error) {
-    return response.status(400).json({ error: error.message });
-  }
+  // @ts-expect-error Paliativo para remover password na resposta
+  delete usuario.password;
+  return response.json(usuario);
 });
 
 usuariosRouter.patch(
@@ -35,18 +31,14 @@ usuariosRouter.patch(
   garantirAutenticacao,
   upload.single('avatar'),
   async (request, response) => {
-    try {
-      const atualizarAvatarUsuario = new AtualizaAvatarUsuarioService();
-      const usuario = await atualizarAvatarUsuario.execute({
-        cod_usuario: request.usuario.id,
-        avatarFilename: request.file.filename,
-      });
-      // @ts-expect-error Paliativo para remover password na resposta
-      delete usuario.password;
-      return response.json(usuario);
-    } catch (error) {
-      return response.status(400).json({ error: error.message });
-    }
+    const atualizarAvatarUsuario = new AtualizaAvatarUsuarioService();
+    const usuario = await atualizarAvatarUsuario.execute({
+      cod_usuario: request.usuario.id,
+      avatarFilename: request.file.filename,
+    });
+    // @ts-expect-error Paliativo para remover password na resposta
+    delete usuario.password;
+    return response.json(usuario);
   },
 );
 

@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 import Usuario from '../models/Usuarios';
+import AppError from '../errors/AppError';
 
 interface Request {
   nome: string;
@@ -24,7 +25,7 @@ class CriarUsuarioService {
     const hashedPassword = await hash(password, 8);
 
     if (verificaExistenciaUsuario) {
-      throw new Error('Email já está cadastrado.');
+      throw new AppError('Email já está cadastrado.');
     }
     const usuario = usuariosRepository.create({
       nome,

@@ -18,9 +18,13 @@
     "prettier"
   ],
   "rules": {
-    "camelcase": [2, { "properties": "never", "ignoreDestructuring": true }],
+    "no-underscore-dangle":"off",
     "prettier/prettier": "error",
     "class-methods-use-this":"off",
+    "@typescript-eslint/camelcase":"off",
+    "@typescript-eslint/no-unused-vars": ["error",{
+      "argsIgnorePatern":"_"
+    }],
     "import/extensions":[
       "error",
       "ignorePackages",
