@@ -26,6 +26,9 @@ class Usuarios {
   password: string;
 
   @Column()
+  avatar: string;
+
+  @Column()
   cod_tipo_usua: number;
 
   @OneToOne(() => TipoUsuarios)

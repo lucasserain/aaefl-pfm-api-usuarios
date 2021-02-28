@@ -3,7 +3,7 @@ import multer from 'multer';
 import uploadConfig from '../config/upload';
 
 import CriarUsuarioService from '../services/CriarUsuarioService';
-
+import AtualizaAvatarUsuarioService from '../services/AtualizaAvatarUsuarioService';
 import garantirAutenticacao from '../middlewares/garantirAutenticacao';
 
 const usuariosRouter = Router();
@@ -35,7 +35,18 @@ usuariosRouter.patch(
   garantirAutenticacao,
   upload.single('avatar'),
   async (request, response) => {
-    return response.json({ ok: 'jooj' });
+    try {
+      const atualizarAvatarUsuario = new AtualizaAvatarUsuarioService();
+      const usuario = await atualizarAvatarUsuario.execute({
+        cod_usuario: request.usuario.id,
+        avatarFilename: request.file.filename,
+      });
+      // @ts-expect-error Paliativo para remover password na resposta
+      delete usuario.password;
+      return response.json(usuario);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
   },
 );
 
