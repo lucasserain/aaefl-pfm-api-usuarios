@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import Usuario from '../models/Usuarios';
 import uploadConfig from '../config/upload';
+import AppError from '../errors/AppError';
 
 interface Request {
   cod_usuario: string;
@@ -18,8 +19,9 @@ class AtualizaAvatarUsuarioService {
     const usuario = await usuariosRepository.findOne(cod_usuario);
 
     if (!usuario) {
-      throw new Error(
+      throw new AppError(
         'Somente usuários autenticados podem alterar sua imagem de perfil',
+        401,
       );
     }
     if (usuario.avatar) {
