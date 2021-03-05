@@ -31,6 +31,8 @@ app.use(
   },
 );
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Servidor iniciado na porta 3333');
+const serverPort = process.env.PORT || 3000;
+
+app.listen(serverPort, () => {
+  console.log('Servidor iniciado na porta:', serverPort);
 });
