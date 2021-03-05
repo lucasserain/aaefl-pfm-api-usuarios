@@ -13,6 +13,8 @@ sessionsRouter.post('/', async (request, response) => {
     password,
   });
 
+  
+
   // @ts-expect-error Paliativo para remover password na resposta
   delete usuario.password;
   return response.json({ usuario, token });
