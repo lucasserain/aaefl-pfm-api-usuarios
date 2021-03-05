@@ -31,8 +31,8 @@ app.use(
   },
 );
 
-const serverPort = process.env.PORT || 3000;
+const serverPort = process.env.PORT || '3000';
 
-app.listen((process.env.PORT || 5000), function(){
-  console.log('listening on *:5000');
+app.listen(serverPort, () => {
+  console.log('Servidor iniciado na porta:', serverPort);
 });
