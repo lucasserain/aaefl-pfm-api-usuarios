@@ -11,7 +11,7 @@ import {
 
 import TipoUsuarios from './TipoUsuarios';
 
-@Entity('TBPFM01_USUA')
+@Entity('tbpfm01_usua')
 class Usuarios {
   @PrimaryGeneratedColumn('uuid')
   cod_usua: string;
